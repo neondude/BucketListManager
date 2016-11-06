@@ -21,6 +21,7 @@
 {% block body %}
 
 
+
 {% for li in buckets %}
 <div class = "modal fade" id="{{li[1]}}" tabindex = "-1" role = "dialog" 
    aria-labelledby = "myModalLabel" aria-hidden = "true">
@@ -37,7 +38,7 @@
             </h4>
          </div>
          <div class = "modal-body">
-            <span>http://127.0.0.1:5000/viewBucketList?listID={{li[2]}}&username={{username}}</span>
+            <input  onfocus="this.select()" class="form-control" type="text" value="http://127.0.0.1:5000/viewBucketList?listID={{li[2]}}&username={{username}}"> 
          </div>
       </div>
    </div>
@@ -71,7 +72,8 @@
                         <a href="/editBucketListItem?listID={{li[0]}}&username={{username}}">{{li[0]}}</a>
                         
                         <a  data-toggle = "modal" data-target = "#{{li[1]}}"><i class="glyphicon glyphicon-link" style="float:right"></i></a>
-                        <a href="/deletebucket?listID={{li[0]}}&username={{username}}"><i class="glyphicon glyphicon-trash pull-right"></i></a>                    
+                        <span style="float:right">&nbsp;&nbsp;&nbsp;</span>
+                        <a href="/deletebucket?listID={{li[0]}}&username={{username}}"><i class="glyphicon glyphicon-trash"  style="float:right"></i></a>                    
                     </li>
                 {% endfor %}
             </ul>
