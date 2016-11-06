@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+{% block head %}
+
+{% endblock %}
+
+{% block nav %}
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">Bucket List Viewer</a>
+            
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/">Home</a></li>
+            {% if session['logged_in']%}
+            <li class="active"><a href="/logout/">Logout</a></li>
+            {% endif%}
+        </ul>
+    </div>
+</nav>
+{% endblock %}
+
+{% block body %}
+
+<div class="container"> 
+    <h2>Search</h2>
+    <div class="row">
+        <div class="col-sm-4">
+            <form action="" class="form-inline" method="post">
+                <input type="text" class="form-control" placeholder = "Enter query to search" name="query" required autofocus>
+                <input class="btn btn-default" type="submit" value="Search">
+            </form>            
+        </div>
+        <div class="col-sm-4">
+            
+        </div>
+    </div>
+    <br>
+    {% if rows|length == 0 %}
+                    <p class = "help-block">Search result empty</p>
+    {% endif%}
+    {%for li in rows %}
+    <div class="row">
+        <div class="col-sm-8">
+            <div class = "panel panel-default">
+                <div class = "panel-heading">
+                    
+                        <a href="/editBucketListItem?listID={{li[0]}}&username={{session['username']}}">
+                            {{li[0]}}
+                        </a>
+                </div>
+                
+                <div class = "panel-body">
+                    
+                    {{li[1]}}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

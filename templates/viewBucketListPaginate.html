@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% block head %}
+
+{% endblock %}
+
+{% block nav %}
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">Bucket List Viewer</a>
+            
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/">Home</a></li>
+            {% if loggedin == 1%}
+            <li class="active"><a href="/logout/">Logout</a></li>
+            {% endif%}
+        </ul>
+    </div>
+</nav>
+{% endblock %}
+
+{% block body %}
+
+    {% if users %}
+      {{ pagination.info }}
+      {{ pagination.links }}
+      <div class="table-responsive">
+        <table class="table table-hover">
+        <thead>
+          <tr><th>#</th><th>User Name</th></tr>
+        </thead>
+        <tbody>
+          {% for user in users %}
+          <tr>
+          <td>{{ loop.index + (page - 1) * per_page }}</td>
+          <td>{{ user.name }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        </table>
+      </div>
+      {{ pagination.links }}
+      {% endif %}
+    {% endblock %}
+
+{% endblock %}
+
+{% block js %}
+  {% if active_url %}
+    $('#{{ active_url }}').addClass('active');
+  {% else %}
+  $('#users-url').addClass('active');
+  {% endif %}
+{% endblock %}

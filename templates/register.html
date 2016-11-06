@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block head %}
+
+{% endblock %}
+
+{% block nav %}
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">Bucket List Viewer</a>
+        </div>
+    </div>
+</nav>
+{% endblock %}
+{% block body %}
+
+<div class="container" style="width:50%">
+    <p class = "help-block">Register:</p>
+    <form action="" class="form" method="post">
+        <label>Username</label>
+        <input type="text" class="form-control" placeholder = "Username" name="username" required autofocus>
+        <label>Password</label>
+        <input type="password" class="form-control" placeholder = "Password" name="password" required>
+        <label>Confirm Password</label>
+        <input type="password" class="form-control" placeholder = "Confirm Password" name="passconfirm" required>
+        <br>
+        <input class="btn btn-default" type="submit" value="Register">
+    </form>
+    <p>Already Registered?- Login <a href='/register'>here</a></p>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+{% block head %}
+
+{% endblock %}
+
+{% block nav %}
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">Bucket List Viewer</a>
+            
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/search/">Search</a></li>
+            <li class="active"><a href="/logout/">Logout</a></li>
+        </ul>
+    </div>
+</nav>
+{% endblock %}
+
+{% block body %}
+
+
+{% for li in buckets %}
+<div class = "modal fade" id="{{li[1]}}" tabindex = "-1" role = "dialog" 
+   aria-labelledby = "myModalLabel" aria-hidden = "true">
+   
+   <div class = "modal-dialog">
+      <div class = "modal-content">
+          <div class = "modal-header">
+            <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
+                  &times;
+            </button>
+            
+            <h4 class = "modal-title" id = "myModalLabel">
+               Share Link
+            </h4>
+         </div>
+         <div class = "modal-body">
+            <span>http://127.0.0.1:5000/viewBucketList?listID={{li[2]}}&username={{username}}</span>
+         </div>
+      </div>
+   </div>
+</div>
+{% endfor %}
+
+<div class="container"> 
+    <h2>{{username}}'s Bucket Lists</h2>
+    <div class="row">
+        <div class="col-sm-4">
+            <form action="" class="form-inline" method="post">
+                <input type="text" class="form-control" placeholder = "BucketList Name" name="bucket" required autofocus>
+                <input class="btn btn-default" type="submit" value="Create Bucketlist">
+            </form>            
+        </div>
+        <div class="col-sm-4">
+            
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        
+        <div class="col-sm-8">
+            <ul class="list-group">
+                
+                {% if buckets|length == 0 %}
+                    <p class = "help-block">no bucket lists available</p>
+                {% endif %}
+                {% for li in buckets %}
+                    <li class="list-group-item">
+                        <a href="/editBucketListItem?listID={{li[0]}}&username={{username}}">{{li[0]}}</a>
+                        
+                        <a  data-toggle = "modal" data-target = "#{{li[1]}}"><i class="glyphicon glyphicon-link" style="float:right"></i></a>
+                        <a href="/deletebucket?listID={{li[0]}}&username={{username}}"><i class="glyphicon glyphicon-trash pull-right"></i></a>                    
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+    
+</div>
+
+
+{% endblock %}

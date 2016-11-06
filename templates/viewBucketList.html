@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block head %}
+
+{% endblock %}
+
+{% block nav %}
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">Bucket List Viewer</a>
+            
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/">Home</a></li>
+            {% if loggedin == 1%}
+            <li class="active"><a href="/logout/">Logout</a></li>
+            {% endif%}
+        </ul>
+    </div>
+</nav>
+{% endblock %}
+
+{% block body %}
+
+<div class="container"> 
+    <h2>{{bucket}}</h2>
+    <div class="row">
+        
+        <div class="col-sm-8">
+            <ul class="list-group">
+
+                {% for li in bucketListItems %}
+                    <li class="list-group-item">
+                        <span>{{li[0]}}</span>                    
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
